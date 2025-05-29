@@ -48,7 +48,7 @@ class DashboardScreen extends ConsumerWidget {
                     children: [
                       Text(
                         'Total Sales',
-                        style: const TextStyle(
+                        style: theme.textTheme.headlineSmall?.copyWith(
                           fontSize: 24,
                           fontWeight: FontWeight.w500,
                           color: Color.fromRGBO(0, 0, 0, 0.8),
@@ -57,7 +57,7 @@ class DashboardScreen extends ConsumerWidget {
 
                       Text(
                         '₹0.00',
-                        style: const TextStyle(
+                        style: theme.textTheme.headlineMedium?.copyWith(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(0, 0, 0, 0.8),
