@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
+import 'package:quick_bill/widgets/recent_invoices.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
@@ -33,7 +34,7 @@ class DashboardScreen extends ConsumerWidget {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: theme.colorScheme.primaryContainer.withValues(
-                  alpha: 0.2,
+                  alpha: 0.1,
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -56,7 +57,7 @@ class DashboardScreen extends ConsumerWidget {
                       ),
 
                       Text(
-                        '₹0.00',
+                        '₹ 0.00',
                         style: theme.textTheme.headlineMedium?.copyWith(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -98,18 +99,7 @@ class DashboardScreen extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 24),
-
-            // Recent Invoices Heading
-            Text('Recent Invoices', style: theme.textTheme.titleMedium),
-
-            const SizedBox(height: 12),
-
-            // TODO: Replace with dynamic list
-            Expanded(
-              child: ListView(
-                children: const [Text('First Invoice'), Text('First Invoice')],
-              ),
-            ),
+            Expanded(child: RecentInvoices()),
           ],
         ),
       ),
