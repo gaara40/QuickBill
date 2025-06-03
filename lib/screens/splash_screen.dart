@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_bill/global_providers/auth_state_providers.dart';
+import 'package:quick_bill/navigation/main_navigation.dart';
 import 'package:quick_bill/screens/dashboard_screen.dart';
 import 'package:quick_bill/screens/login_screen.dart';
 
@@ -19,7 +20,7 @@ class SplashScreen extends ConsumerWidget {
               (_) => authState.when(
                 data: (user) {
                   if (user != null) {
-                    return DashboardScreen();
+                    return MainNavigation();
                   } else {
                     return LoginScreen();
                   }

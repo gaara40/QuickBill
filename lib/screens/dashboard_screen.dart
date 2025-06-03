@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
 import 'package:quick_bill/screens/login_screen.dart';
-import 'package:quick_bill/screens/new_invoice_screen.dart';
+import 'package:quick_bill/widgets/new_invoice.dart';
 import 'package:quick_bill/widgets/recent_invoices.dart';
 
 class DashboardScreen extends ConsumerWidget {
@@ -87,7 +87,7 @@ class DashboardScreen extends ConsumerWidget {
                     onPressed:
                         () => Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (_) => NewInvoiceScreen()),
+                          MaterialPageRoute(builder: (_) => NewInvoice()),
                         ),
                     icon: const Icon(Icons.receipt_long),
                     label: const Text('New Invoice'),

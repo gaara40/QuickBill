@@ -5,14 +5,14 @@ import 'package:quick_bill/global_providers/invoice_provider.dart';
 import 'package:quick_bill/models/invoice_item_model.dart';
 import 'package:quick_bill/widgets/selected_item_row.dart';
 
-class NewInvoiceScreen extends ConsumerStatefulWidget {
-  const NewInvoiceScreen({super.key});
+class NewInvoice extends ConsumerStatefulWidget {
+  const NewInvoice({super.key});
 
   @override
-  ConsumerState<NewInvoiceScreen> createState() => _NewInvoiceScreenState();
+  ConsumerState<NewInvoice> createState() => _NewInvoiceScreenState();
 }
 
-class _NewInvoiceScreenState extends ConsumerState<NewInvoiceScreen> {
+class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
   final customerNameController = TextEditingController();
 
   bool _initialized = false;
