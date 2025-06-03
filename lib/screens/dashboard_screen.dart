@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
+import 'package:quick_bill/screens/login_screen.dart';
 import 'package:quick_bill/screens/new_invoice_screen.dart';
 import 'package:quick_bill/widgets/recent_invoices.dart';
 
@@ -19,6 +20,12 @@ class DashboardScreen extends ConsumerWidget {
             icon: const Icon(Icons.logout),
             onPressed: () async {
               await ref.read(authServiceProvider).signOut();
+              if (context.mounted) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => LoginScreen()),
+                );
+              }
             },
           ),
         ],
