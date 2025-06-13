@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quick_bill/global_providers/inventory_provider.dart';
 import 'package:quick_bill/models/invoice_item_model.dart';
 
 class InvoiceNotifier extends StateNotifier<List<InvoiceItem>> {
@@ -28,13 +29,22 @@ class InvoiceNotifier extends StateNotifier<List<InvoiceItem>> {
     }
   }
 
-  void incrementQty(String name, BuildContext context, InvoiceItem item) {
+  void incrementQty(
+    String name,
+    BuildContext context,
+    InvoiceItem item,
+    WidgetRef ref,
+  ) {
     final index = state.indexWhere((element) => element.name == name);
     if (index != -1) {
       final updated = [...state];
       final existing = updated[index];
 
-      if (existing.qty >= item.qty) {
+      final inventoryItems = ref.read(inventoryProvider);
+      final stock =
+          inventoryItems.firstWhere((element) => element.name == name).qty;
+
+      if (existing.qty >= stock) {
         ScaffoldMessenger.of(context).clearSnackBars();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

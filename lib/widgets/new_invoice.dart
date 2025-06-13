@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:quick_bill/global_providers/available_items_provider.dart';
+
+import 'package:quick_bill/global_providers/inventory_provider.dart';
 import 'package:quick_bill/global_providers/invoice_provider.dart';
+import 'package:quick_bill/models/inventory_item.dart';
 import 'package:quick_bill/models/invoice_item_model.dart';
+
 import 'package:quick_bill/widgets/selected_item_row.dart';
 
 class NewInvoice extends ConsumerStatefulWidget {
@@ -26,7 +29,7 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
 
   @override
   Widget build(BuildContext context) {
-    final items = ref.watch(availableItemsProvider);
+    final inventoryItems = ref.watch(inventoryProvider);
     final selectedItems = ref.watch(invoiceProvider);
     final theme = Theme.of(context);
     final subTotal = ref.watch(invoiceProvider.notifier).subTotal;
@@ -46,22 +49,46 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
             ),
             const SizedBox(height: 12),
 
-            DropdownButtonFormField<InvoiceItem>(
+            DropdownButtonFormField<InventoryItem>(
               value: null,
               items:
-                  items.map((item) {
-                    return DropdownMenuItem(
-                      value: item,
-                      child: Text(item.name),
-                    );
-                  }).toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  ref
-                      .read(invoiceProvider.notifier)
-                      .addOrUpdate(value, context);
-                }
-              },
+                  inventoryItems.isNotEmpty
+                      ? inventoryItems
+                          .map(
+                            (item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(item.name),
+                            ),
+                          )
+                          .toList()
+                      : [
+                        const DropdownMenuItem(
+                          value: null,
+
+                          child: Text(
+                            'Inventory is empty. Please add items.',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                      ],
+
+              onChanged:
+                  inventoryItems.isNotEmpty
+                      ? (value) {
+                        if (value != null) {
+                          ref
+                              .read(invoiceProvider.notifier)
+                              .addOrUpdate(
+                                InvoiceItem(
+                                  name: value.name,
+                                  price: value.price,
+                                  qty: value.qty,
+                                ),
+                                context,
+                              );
+                        }
+                      }
+                      : null,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: 'Select Item',

@@ -46,7 +46,7 @@ class SelectedItemRow extends ConsumerWidget {
                   onTap:
                       () => ref
                           .read(invoiceProvider.notifier)
-                          .incrementQty(item.name, context, item),
+                          .incrementQty(item.name, context, item, ref),
                   child: const Icon(Icons.add, size: 20),
                 ),
               ],
