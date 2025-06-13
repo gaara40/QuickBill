@@ -1,18 +1,25 @@
+import 'package:uuid/uuid.dart';
+
+final uuid = Uuid();
+
 class InvoiceItem {
+  final String id;
   final String name;
   final double price;
   final int qty;
 
-  const InvoiceItem({
+  InvoiceItem({
     required this.name,
     required this.price,
     required this.qty,
-  });
+    String? id,
+  }) : id = uuid.v4();
 
   double get total => price * qty;
 
-  InvoiceItem copyWith({String? name, double? price, int? qty}) {
+  InvoiceItem copyWith({String? name, double? price, int? qty, String? id}) {
     return InvoiceItem(
+      id: id ?? this.id,
       name: name ?? this.name,
       price: price ?? this.price,
       qty: qty ?? this.qty,

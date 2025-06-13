@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
+import 'package:quick_bill/global_providers/invoice_history_provider.dart';
 import 'package:quick_bill/screens/login_screen.dart';
 import 'package:quick_bill/widgets/new_invoice.dart';
 import 'package:quick_bill/widgets/recent_invoices.dart';
@@ -11,6 +12,7 @@ class DashboardScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final totalSales = ref.watch(totalSalesProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -65,7 +67,7 @@ class DashboardScreen extends ConsumerWidget {
                       ),
 
                       Text(
-                        '₹ 0.00',
+                        totalSales.toStringAsFixed(2),
                         style: theme.textTheme.headlineMedium?.copyWith(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,

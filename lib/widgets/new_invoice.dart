@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:quick_bill/global_providers/inventory_provider.dart';
+import 'package:quick_bill/global_providers/invoice_history_provider.dart';
 import 'package:quick_bill/global_providers/invoice_provider.dart';
+import 'package:quick_bill/models/generate_invoice_model.dart';
 import 'package:quick_bill/models/inventory_item.dart';
 import 'package:quick_bill/models/invoice_item_model.dart';
+import 'package:quick_bill/screens/dashboard_screen.dart';
 
 import 'package:quick_bill/widgets/selected_item_row.dart';
 
@@ -156,7 +159,7 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () => generateInvoice(subTotal),
                 child: const Text('Generate Invoice'),
               ),
             ),
@@ -176,5 +179,70 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
         ref.read(invoiceProvider.notifier).clear();
       });
     }
+  }
+
+  void generateInvoice(double subTotal) {
+    final customerName = customerNameController.text.trim();
+    final selectedItems = ref.read(invoiceProvider);
+
+    if (customerName.trim().isEmpty) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Customer name cannot be empty'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    if (selectedItems.isEmpty) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please add at least one item'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
+    final invoice = GenerateInvoiceModel(
+      customerName: customerName,
+      dateTime: DateTime.now(),
+      items: [...selectedItems],
+      total: subTotal,
+    );
+
+    ref.read(invoiceHistoryProvider.notifier).addInvoice(invoice);
+
+    ref.read(invoiceProvider.notifier).clear();
+
+    customerNameController.clear();
+
+    debugPrint('✅ Invoice Generated:');
+    debugPrint('ID: ${invoice.id}');
+    debugPrint('Customer: ${invoice.customerName}');
+    debugPrint('Date: ${invoice.dateTime}');
+    debugPrint('Total: ₹${invoice.total}');
+    debugPrint('Items:');
+    for (var item in invoice.items) {
+      debugPrint(
+        '- ${item.name} x ${item.qty} @ ${item.price} = ${item.qty * item.price}',
+      );
+    }
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (ctx) => DashboardScreen()),
+    );
+
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Invoice generated successfully'),
+        duration: Duration(seconds: 2),
+      ),
+    );
   }
 }

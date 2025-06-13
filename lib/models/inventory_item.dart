@@ -8,11 +8,16 @@ class InventoryItem {
   final double price;
   final int qty;
 
-  InventoryItem({required this.name, required this.price, required this.qty})
-    : id = uuid.v4();
+  InventoryItem({
+    required this.name,
+    required this.price,
+    required this.qty,
+    String? id,
+  }) : id = uuid.v4();
 
-  InventoryItem copyWith({String? name, double? price, int? qty}) {
+  InventoryItem copyWith({String? name, double? price, int? qty, String? id}) {
     return InventoryItem(
+      id: id ?? this.id,
       name: name ?? this.name,
       price: price ?? this.price,
       qty: qty ?? this.qty,

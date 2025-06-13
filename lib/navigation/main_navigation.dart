@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:quick_bill/screens/dashboard_screen.dart';
 import 'package:quick_bill/screens/inventory_screen.dart';
 import 'package:quick_bill/screens/settings_screen.dart';
