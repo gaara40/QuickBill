@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/inventory_provider.dart';
-import 'package:quick_bill/models/invoice_item_model.dart';
+import 'package:quick_bill/models/invoice_item.dart';
 
 class InvoiceNotifier extends StateNotifier<List<InvoiceItem>> {
   InvoiceNotifier() : super([]);

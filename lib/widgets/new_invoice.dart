@@ -6,7 +6,7 @@ import 'package:quick_bill/global_providers/invoice_history_provider.dart';
 import 'package:quick_bill/global_providers/invoice_provider.dart';
 import 'package:quick_bill/models/generate_invoice_model.dart';
 import 'package:quick_bill/models/inventory_item.dart';
-import 'package:quick_bill/models/invoice_item_model.dart';
+import 'package:quick_bill/models/invoice_item.dart';
 
 import 'package:quick_bill/widgets/selected_item_row.dart';
 

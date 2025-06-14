@@ -1,11 +1,22 @@
+import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
+
+part 'invoice_item.g.dart';
 
 final uuid = Uuid();
 
-class InvoiceItem {
+@HiveType(typeId: 1)
+class InvoiceItem extends HiveObject {
+  @HiveField(0)
   final String id;
+
+  @HiveField(1)
   final String name;
+
+  @HiveField(2)
   final double price;
+
+  @HiveField(3)
   final int qty;
 
   InvoiceItem({

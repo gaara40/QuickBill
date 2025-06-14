@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:quick_bill/models/invoice_item_model.dart';
+import 'package:quick_bill/models/invoice_item.dart';
 
 final availableItemsProvider = Provider<List<InvoiceItem>>((ref) {
   return [
