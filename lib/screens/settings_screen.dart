@@ -25,9 +25,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             const SizedBox(height: 12),
             Text(
-              'Cool things are coming soon.\nStay tuned😎',
+              'Things are coming soon.\nStay tuned',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+              style: TextStyle(fontSize: 15, color: Colors.grey[600]),
             ),
             SizedBox(height: 40),
             WittyMessagesWidget(),
