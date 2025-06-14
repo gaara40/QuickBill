@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quick_bill/global_providers/auth_state_providers.dart';
+import 'package:quick_bill/main.dart';
 import 'package:quick_bill/navigation/main_navigation.dart';
 import 'package:quick_bill/screens/login_screen.dart';
 
@@ -12,8 +13,7 @@ class SplashScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authState = ref.watch(authStateProvider);
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-        context,
+      navigatorKey.currentState?.pushAndRemoveUntil(
         MaterialPageRoute(
           builder:
               (_) => authState.when(
@@ -30,6 +30,7 @@ class SplashScreen extends ConsumerWidget {
                 loading: () => CircularProgressIndicator(color: Colors.white),
               ),
         ),
+        (route) => false,
       );
     });
     return Scaffold(

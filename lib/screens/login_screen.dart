@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
-import 'package:quick_bill/screens/dashboard_screen.dart';
+import 'package:quick_bill/main.dart';
+import 'package:quick_bill/navigation/main_navigation.dart';
 import 'package:quick_bill/screens/signup_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -34,15 +35,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       );
 
       if (user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const DashboardScreen()),
+        navigatorKey.currentState?.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => MainNavigation()),
+          (route) => false,
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
+      if (mounted == true) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toString())));
+      }
     } finally {
       setState(() => _loading = false);
     }

@@ -10,6 +10,8 @@ import 'package:quick_bill/screens/splash_screen.dart';
 import 'package:quick_bill/theme_data.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumentDirectory = await path.getApplicationDocumentsDirectory();
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      navigatorKey: navigatorKey,
       theme: QuickBillTheme.lightTheme,
       darkTheme: QuickBillTheme.darkTheme,
       themeMode: ThemeMode.system,

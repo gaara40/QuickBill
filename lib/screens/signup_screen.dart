@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
+import 'package:quick_bill/main.dart';
 import 'package:quick_bill/screens/login_screen.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
@@ -36,15 +37,16 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Account created! Please login.')),
         );
-        Navigator.pushReplacement(
-          context,
+        navigatorKey.currentState?.pushReplacement(
           MaterialPageRoute(builder: (_) => const LoginScreen()),
         );
       }
     } catch (e) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.toString())));
+      if (mounted == true) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text(e.toString())));
+      }
     } finally {
       setState(() => _loading = false);
     }
