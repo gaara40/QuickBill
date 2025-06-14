@@ -7,7 +7,6 @@ import 'package:quick_bill/global_providers/invoice_provider.dart';
 import 'package:quick_bill/models/generate_invoice_model.dart';
 import 'package:quick_bill/models/inventory_item.dart';
 import 'package:quick_bill/models/invoice_item_model.dart';
-import 'package:quick_bill/screens/dashboard_screen.dart';
 
 import 'package:quick_bill/widgets/selected_item_row.dart';
 
@@ -193,7 +192,7 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
     final customerName = customerNameController.text.trim();
     final selectedItems = ref.read(invoiceProvider);
 
-    if (customerName.trim().isEmpty) {
+    if (customerName.isEmpty) {
       ScaffoldMessenger.of(context).clearSnackBars();
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -215,48 +214,64 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
       return;
     }
 
-    final invoice = GenerateInvoiceModel(
-      customerName: customerName,
-      dateTime: DateTime.now(),
-      items: [...selectedItems],
-      total: subTotal,
-    );
+    try {
+      final invoice = GenerateInvoiceModel(
+        customerName: customerName,
+        dateTime: DateTime.now(),
+        items: [...selectedItems],
+        total: subTotal,
+      );
 
-    ref.read(invoiceHistoryProvider.notifier).addInvoice(invoice);
+      // Saving invoice to history
+      ref.read(invoiceHistoryProvider.notifier).addInvoice(invoice);
 
-    for (var soldItem in invoice.items) {
-      ref
-          .read(inventoryProvider.notifier)
-          .updateItemQuantityAfterSale(soldItem.name, soldItem.qty);
-    }
+      // Updating inventory for each sold item
+      for (var soldItem in invoice.items) {
+        ref
+            .read(inventoryProvider.notifier)
+            .updateItemQuantityAfterSale(soldItem.name, soldItem.qty);
+      }
 
-    ref.read(invoiceProvider.notifier).clear();
+      // Clearing current invoice and input
+      ref.read(invoiceProvider.notifier).clear();
+      customerNameController.clear();
 
-    customerNameController.clear();
+      // Debugging output
+      debugPrint('✅ Invoice Generated:');
+      debugPrint('ID: ${invoice.id}');
+      debugPrint('Customer: ${invoice.customerName}');
+      debugPrint('Date: ${invoice.dateTime}');
+      debugPrint('Total: ₹${invoice.total}');
+      debugPrint('Items:');
+      for (var item in invoice.items) {
+        debugPrint(
+          '- ${item.name} x ${item.qty} @ ${item.price} = ${item.qty * item.price}',
+        );
+      }
 
-    debugPrint('✅ Invoice Generated:');
-    debugPrint('ID: ${invoice.id}');
-    debugPrint('Customer: ${invoice.customerName}');
-    debugPrint('Date: ${invoice.dateTime}');
-    debugPrint('Total: ₹${invoice.total}');
-    debugPrint('Items:');
-    for (var item in invoice.items) {
-      debugPrint(
-        '- ${item.name} x ${item.qty} @ ${item.price} = ${item.qty * item.price}',
+      // Navigation to dashboard
+      Navigator.pop(context);
+
+      // Success notification
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Invoice generated successfully'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    } catch (e, stackTrace) {
+      // Handling any unexpected errors
+      debugPrint('❌ Error generating invoice: $e');
+      debugPrint(stackTrace.toString());
+
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Something went wrong while generating invoice'),
+          duration: Duration(seconds: 2),
+        ),
       );
     }
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (ctx) => DashboardScreen()),
-    );
-
-    ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Invoice generated successfully'),
-        duration: Duration(seconds: 2),
-      ),
-    );
   }
 }
