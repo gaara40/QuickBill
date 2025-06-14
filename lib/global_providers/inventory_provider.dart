@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:quick_bill/models/inventory_item.dart';
 
-// StateNotifier for managing the inventory list
 class InventoryNotifier extends StateNotifier<List<InventoryItem>> {
   final Box<InventoryItem> _box;
 
