@@ -6,9 +6,24 @@ import 'package:quick_bill/models/invoice_item_model.dart';
 class InvoiceNotifier extends StateNotifier<List<InvoiceItem>> {
   InvoiceNotifier() : super([]);
 
-  void addOrUpdate(InvoiceItem item, BuildContext context) {
+  void addOrUpdate(InvoiceItem item, BuildContext context, WidgetRef ref) {
     final index = state.indexWhere((element) => element.name == item.name);
-    final maxQty = item.qty;
+    final inventoryItems = ref.read(inventoryProvider);
+    final inventoryItem = inventoryItems.firstWhere((e) => e.name == item.name);
+
+    final maxQty = inventoryItem.qty;
+
+    if (maxQty <= 0) {
+      ScaffoldMessenger.of(context).clearSnackBars();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('No stock available for ${item.name}'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+
     if (index == -1) {
       state = [...state, item.copyWith(qty: 1)];
     } else {

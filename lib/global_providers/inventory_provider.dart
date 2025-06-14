@@ -21,6 +21,19 @@ class InventoryNotifier extends StateNotifier<List<InventoryItem>> {
     }
   }
 
+  void updateItemQuantityAfterSale(String name, int soldQty) {
+    final index = state.indexWhere((item) => item.name == name);
+    if (index != -1) {
+      final updated = [...state];
+      final existing = updated[index];
+      final newQty = existing.qty - soldQty;
+
+      // Ensuring stock doesn't go negative
+      updated[index] = existing.copyWith(qty: newQty.clamp(0, existing.qty));
+      state = updated;
+    }
+  }
+
   void clear() {
     state = [];
   }

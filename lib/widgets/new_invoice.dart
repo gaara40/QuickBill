@@ -60,7 +60,14 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
                           .map(
                             (item) => DropdownMenuItem(
                               value: item,
-                              child: Text(item.name),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('${item.name} '),
+                                  Text(item.qty.toString()),
+                                ],
+                              ),
                             ),
                           )
                           .toList()
@@ -88,6 +95,7 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
                                   qty: value.qty,
                                 ),
                                 context,
+                                ref,
                               );
                         }
                       }
@@ -215,6 +223,12 @@ class _NewInvoiceScreenState extends ConsumerState<NewInvoice> {
     );
 
     ref.read(invoiceHistoryProvider.notifier).addInvoice(invoice);
+
+    for (var soldItem in invoice.items) {
+      ref
+          .read(inventoryProvider.notifier)
+          .updateItemQuantityAfterSale(soldItem.name, soldItem.qty);
+    }
 
     ref.read(invoiceProvider.notifier).clear();
 
