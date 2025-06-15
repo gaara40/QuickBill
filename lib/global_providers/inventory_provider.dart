@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
+import 'package:quick_bill/hive_constants/hive_box_names.dart';
 import 'package:quick_bill/models/inventory_item.dart';
 
 class InventoryNotifier extends StateNotifier<List<InventoryItem>> {
@@ -49,6 +50,6 @@ class InventoryNotifier extends StateNotifier<List<InventoryItem>> {
 
 final inventoryProvider =
     StateNotifierProvider<InventoryNotifier, List<InventoryItem>>((ref) {
-      final box = Hive.box<InventoryItem>('inventoryItem_box');
+      final box = Hive.box<InventoryItem>(HiveBoxNames.inventoryItemBox);
       return InventoryNotifier(box);
     });
