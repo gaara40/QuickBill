@@ -1,35 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quick_bill/global_providers/auth_state_providers.dart';
+import 'package:quick_bill/firebase_authentication/auth_gate.dart';
 import 'package:quick_bill/main.dart';
-import 'package:quick_bill/navigation/main_navigation.dart';
-import 'package:quick_bill/screens/login_screen.dart';
 
 class SplashScreen extends ConsumerWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authStateProvider);
     Future.delayed(Duration(seconds: 2), () {
       navigatorKey.currentState?.pushAndRemoveUntil(
-        MaterialPageRoute(
-          builder:
-              (_) => authState.when(
-                data: (user) {
-                  if (user != null) {
-                    return MainNavigation();
-                  } else {
-                    return LoginScreen();
-                  }
-                },
-                error: (error, st) {
-                  return Center(child: Text('$error'));
-                },
-                loading: () => CircularProgressIndicator(color: Colors.white),
-              ),
-        ),
+        MaterialPageRoute(builder: (_) => const AuthGate()),
         (route) => false,
       );
     });

@@ -3,25 +3,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthServices {
   final _auth = FirebaseAuth.instance;
 
-  Future<User?> signUpWithEmail(String email, String password) async {
+  Future<UserCredential?> signUpWithEmail(String email, String password) async {
     try {
       final userCred = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return userCred.user;
+      return userCred;
     } on FirebaseAuthException catch (e) {
       throw _handleFirebaseError(e);
     }
   }
 
-  Future<User?> signInWithEmail(String email, String password) async {
+  Future<UserCredential> signInWithEmail(String email, String password) async {
     try {
       final userCred = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return userCred.user;
+      return userCred;
     } on FirebaseAuthException catch (e) {
       throw _handleFirebaseError(e);
     }
@@ -51,6 +51,4 @@ class AuthServices {
   Future<void> signOut() async {
     await _auth.signOut();
   }
-
-  Stream<User?> get authStateChanges => _auth.authStateChanges();
 }

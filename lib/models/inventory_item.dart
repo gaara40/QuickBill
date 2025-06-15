@@ -1,22 +1,14 @@
-import 'package:hive_flutter/adapters.dart';
 import 'package:uuid/uuid.dart';
-
-part 'inventory_item.g.dart';
 
 final uuid = Uuid();
 
-@HiveType(typeId: 0)
-class InventoryItem extends HiveObject {
-  @HiveField(0)
+class InventoryItem {
   final String id;
 
-  @HiveField(1)
   final String name;
 
-  @HiveField(2)
   final double price;
 
-  @HiveField(3)
   final int qty;
 
   InventoryItem({

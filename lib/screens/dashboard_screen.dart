@@ -130,16 +130,7 @@ class DashboardScreen extends ConsumerWidget {
                         context: context,
                         builder: (_) {
                           return AlertDialog(
-                            title: Text('Heads Up!'),
-                            content: Text('Feature coming soon'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text('Ok'),
-                              ),
-                            ],
+                            title: Text('Feature coming soon...'),
                           );
                         },
                       );

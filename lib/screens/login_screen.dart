@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
-import 'package:quick_bill/main.dart';
-import 'package:quick_bill/navigation/main_navigation.dart';
 import 'package:quick_bill/screens/signup_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -29,19 +27,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     final auth = ref.read(authServiceProvider);
 
     try {
-      final user = await auth.signInWithEmail(
+      await auth.signInWithEmail(
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
-
-      if (user != null) {
-        navigatorKey.currentState?.pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => MainNavigation()),
-          (route) => false,
-        );
-      }
     } catch (e) {
-      if (mounted == true) {
+      if (mounted) {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(e.toString())));
@@ -105,9 +96,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 child:
                     _loading
-                        ? const CircularProgressIndicator(
-                          color: Colors.white,
-                          strokeWidth: 2,
+                        ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
                         )
                         : const Text(
                           'Login',
