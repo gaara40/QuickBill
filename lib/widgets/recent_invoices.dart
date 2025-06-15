@@ -38,13 +38,11 @@ class RecentInvoices extends ConsumerWidget {
                   child: Text(
                     'Recent Invoices',
                     style: theme.textTheme.bodyLarge?.copyWith(
-                      fontSize: 20,
+                      fontSize: 18,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                 ),
-
-                IconButton(onPressed: () {}, icon: Icon(Icons.swap_vert)),
               ],
             ),
           ),

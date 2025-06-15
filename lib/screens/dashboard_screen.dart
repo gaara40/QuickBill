@@ -84,16 +84,16 @@ class DashboardScreen extends ConsumerWidget {
                       Text(
                         'Total Sales',
                         style: theme.textTheme.headlineSmall?.copyWith(
-                          fontSize: 24,
+                          fontSize: 22,
                           fontWeight: FontWeight.w500,
                           color: Color.fromRGBO(0, 0, 0, 0.8),
                         ),
                       ),
 
                       Text(
-                        totalSales.toStringAsFixed(2),
+                        '₹ ${totalSales.toStringAsFixed(2)}',
                         style: theme.textTheme.headlineMedium?.copyWith(
-                          fontSize: 28,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                           color: Color.fromRGBO(0, 0, 0, 0.8),
                         ),
@@ -125,7 +125,25 @@ class DashboardScreen extends ConsumerWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () {}, // TODO: Navigate to Insights
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text('Heads Up!'),
+                            content: Text('Feature coming soon'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }, // TODO: Navigate to Insights
                     icon: const Icon(Icons.insights),
                     label: const Text('Insights'),
                     style: ElevatedButton.styleFrom(
@@ -136,7 +154,7 @@ class DashboardScreen extends ConsumerWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 18),
             Expanded(child: RecentInvoices()),
           ],
         ),
