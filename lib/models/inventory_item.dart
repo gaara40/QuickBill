@@ -1,14 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 final uuid = Uuid();
 
 class InventoryItem {
   final String id;
-
   final String name;
-
   final double price;
-
   final int qty;
 
   InventoryItem({
@@ -18,7 +16,7 @@ class InventoryItem {
     String? id,
   }) : id = id ?? uuid.v4();
 
-  InventoryItem copyWith({String? name, double? price, int? qty, String? id}) {
+  InventoryItem copyWith({String? id, String? name, double? price, int? qty}) {
     return InventoryItem(
       id: id ?? this.id,
       name: name ?? this.name,
@@ -27,13 +25,17 @@ class InventoryItem {
     );
   }
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is InventoryItem &&
-          runtimeType == other.runtimeType &&
-          name == other.name;
+  factory InventoryItem.fromFirestore(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
+    return InventoryItem(
+      id: doc.id,
+      name: data['name'] ?? '',
+      price: (data['price'] ?? 0).toDouble(),
+      qty: data['qty'] ?? 0,
+    );
+  }
 
-  @override
-  int get hashCode => name.hashCode;
+  Map<String, dynamic> toMap() {
+    return {'name': name, 'price': price, 'qty': qty};
+  }
 }

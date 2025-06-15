@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:quick_bill/global_providers/auth_providers.dart';
+import 'package:quick_bill/global_providers/inventory_provider.dart';
+import 'package:quick_bill/global_providers/invoice_history_provider.dart';
+import 'package:quick_bill/global_providers/invoice_provider.dart';
+
 import 'package:quick_bill/screens/signup_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -31,6 +36,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         _emailController.text.trim(),
         _passwordController.text.trim(),
       );
+
+      ref.invalidate(invoiceProvider);
+      ref.invalidate(invoiceHistoryProvider);
+      ref.invalidate(inventoryProvider);
+      ref.invalidate(totalSalesProvider);
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(

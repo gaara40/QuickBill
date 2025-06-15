@@ -68,7 +68,6 @@ class InventoryItemList extends ConsumerWidget {
                     ref
                         .read(inventoryProvider.notifier)
                         .deleteItem(inventoryItem.id);
-                    return true;
                   }
 
                   return false;
@@ -79,7 +78,7 @@ class InventoryItemList extends ConsumerWidget {
               child: InventoryItemCard(inventoryItem: inventoryItem),
             ),
             if (index < inventoryItems.length - 1)
-              Divider(height: 0, thickness: 1), // Add divider between items
+              Divider(height: 0, thickness: 1),
           ],
         );
       },

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:quick_bill/global_providers/auth_providers.dart';
+import 'package:quick_bill/global_providers/inventory_provider.dart';
 import 'package:quick_bill/global_providers/invoice_history_provider.dart';
-import 'package:quick_bill/screens/login_screen.dart';
+import 'package:quick_bill/global_providers/invoice_provider.dart';
+
 import 'package:quick_bill/widgets/new_invoice.dart';
 import 'package:quick_bill/widgets/recent_invoices.dart';
 
@@ -35,16 +37,20 @@ class DashboardScreen extends ConsumerWidget {
                       ElevatedButton(
                         onPressed: () async {
                           Navigator.pop(ctx);
+                          ref.invalidate(invoiceProvider);
+                          ref.invalidate(invoiceHistoryProvider);
+                          ref.invalidate(inventoryProvider);
+                          ref.invalidate(totalSalesProvider);
                           await ref.read(authServiceProvider).signOut();
-                          if (context.mounted) {
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const LoginScreen(),
-                              ),
-                              (route) => false,
-                            );
-                          }
+                          // if (context.mounted) {
+                          //   Navigator.pushAndRemoveUntil(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder: (_) => const LoginScreen(),
+                          //     ),
+                          //     (route) => false,
+                          //   );
+                          // }
                         },
                         child: Text('Yes'),
                       ),
