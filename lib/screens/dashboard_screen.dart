@@ -37,20 +37,11 @@ class DashboardScreen extends ConsumerWidget {
                       ElevatedButton(
                         onPressed: () async {
                           Navigator.pop(ctx);
+                          await ref.read(authServiceProvider).signOut();
                           ref.invalidate(invoiceProvider);
                           ref.invalidate(invoiceHistoryProvider);
                           ref.invalidate(inventoryProvider);
                           ref.invalidate(totalSalesProvider);
-                          await ref.read(authServiceProvider).signOut();
-                          // if (context.mounted) {
-                          //   Navigator.pushAndRemoveUntil(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //       builder: (_) => const LoginScreen(),
-                          //     ),
-                          //     (route) => false,
-                          //   );
-                          // }
                         },
                         child: Text('Yes'),
                       ),

@@ -38,4 +38,13 @@ class InventoryItem {
   Map<String, dynamic> toMap() {
     return {'name': name, 'price': price, 'qty': qty};
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is InventoryItem && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
