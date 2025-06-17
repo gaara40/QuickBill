@@ -11,7 +11,7 @@ class RecentInvoices extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final invoiceHistory = ref.watch(invoiceHistoryProvider);
-    final reversedInvoices = invoiceHistory.reversed.toList();
+    final invoices = invoiceHistory.toList();
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.primaryContainer.withValues(alpha: 0.1),
@@ -83,7 +83,7 @@ class RecentInvoices extends ConsumerWidget {
                       )
                       : ListView.separated(
                         itemBuilder: (context, index) {
-                          final invoice = reversedInvoices[index];
+                          final invoice = invoices[index];
                           return InvoiceRow(
                             customer: invoice.customerName,
                             date: formatDate(invoice.dateTime),
@@ -93,7 +93,7 @@ class RecentInvoices extends ConsumerWidget {
                           );
                         },
                         separatorBuilder: (_, _) => const Divider(height: 1),
-                        itemCount: reversedInvoices.length,
+                        itemCount: invoices.length,
                       ),
             ),
           ),

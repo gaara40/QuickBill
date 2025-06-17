@@ -21,7 +21,7 @@ class InvoiceHistoryNotifier extends StateNotifier<List<GenerateInvoiceModel>> {
           .collection('users')
           .doc(userId)
           .collection('invoices')
-          .orderBy('dateTime', descending: false);
+          .orderBy('dateTime', descending: true);
 
       final snapshot = await invoiceCollection.get();
       state =

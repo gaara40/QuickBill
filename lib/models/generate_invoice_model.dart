@@ -23,7 +23,7 @@ class GenerateInvoiceModel {
   Map<String, dynamic> toMap() {
     return {
       'customerName': customerName,
-      'dateTime': dateTime,
+      'dateTime': Timestamp.fromDate(dateTime),
       'total': total,
       'items': items.map((item) => item.toMap()).toList(),
     };
