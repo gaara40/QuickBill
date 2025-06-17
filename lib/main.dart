@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       theme: QuickBillTheme.lightTheme,
       darkTheme: QuickBillTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       home: SplashScreen(),
     );
   }
