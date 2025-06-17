@@ -20,7 +20,8 @@ class InvoiceHistoryNotifier extends StateNotifier<List<GenerateInvoiceModel>> {
       final invoiceCollection = _firestore
           .collection('users')
           .doc(userId)
-          .collection('invoices');
+          .collection('invoices')
+          .orderBy('dateTime', descending: false);
 
       final snapshot = await invoiceCollection.get();
       state =
