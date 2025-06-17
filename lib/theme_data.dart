@@ -4,6 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 class QuickBillTheme {
   static final lightTheme = ThemeData(
     useMaterial3: true,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+      elevation: 2,
+      foregroundColor: Colors.black,
+    ),
     colorScheme: const ColorScheme.light(
       primary: Color(0xFF3E64FF),
       secondary: Color(0xFFFFA41B),
@@ -21,6 +26,12 @@ class QuickBillTheme {
 
   static final darkTheme = ThemeData(
     useMaterial3: true,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+      elevation: 2,
+      foregroundColor: Colors.black,
+    ),
+
     brightness: Brightness.dark,
     colorScheme: const ColorScheme.dark(
       primary: Color(0xFF3E64FF),
