@@ -43,7 +43,7 @@ class InvoiceHistoryNotifier extends StateNotifier<List<GenerateInvoiceModel>> {
             .doc(invoice.id);
 
         await invoiceRef.set(invoice.toMap());
-        state = [...state, invoice];
+        state = [invoice, ...state];
       }
     } catch (e) {
       debugPrint("Error saving invoice to Firestore: $e");

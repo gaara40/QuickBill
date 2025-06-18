@@ -81,19 +81,22 @@ class RecentInvoices extends ConsumerWidget {
                           ],
                         ),
                       )
-                      : ListView.separated(
-                        itemBuilder: (context, index) {
-                          final invoice = invoices[index];
-                          return InvoiceRow(
-                            customer: invoice.customerName,
-                            date: formatDate(invoice.dateTime),
-                            amount: invoice.total.toStringAsFixed(2),
-                            invoiceNumber: invoice.id,
-                            onTap: () {},
-                          );
-                        },
-                        separatorBuilder: (_, _) => const Divider(height: 1),
-                        itemCount: invoices.length,
+                      : ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: ListView.separated(
+                          itemBuilder: (context, index) {
+                            final invoice = invoices[index];
+                            return InvoiceRow(
+                              customer: invoice.customerName,
+                              date: formatDate(invoice.dateTime),
+                              amount: invoice.total.toStringAsFixed(2),
+                              invoiceNumber: invoice.id,
+                              onTap: () {},
+                            );
+                          },
+                          separatorBuilder: (_, _) => const Divider(height: 1),
+                          itemCount: invoices.length,
+                        ),
                       ),
             ),
           ),

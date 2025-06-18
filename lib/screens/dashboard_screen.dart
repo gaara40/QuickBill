@@ -4,6 +4,8 @@ import 'package:quick_bill/global_providers/auth_providers.dart';
 import 'package:quick_bill/global_providers/inventory_provider.dart';
 import 'package:quick_bill/global_providers/invoice_history_provider.dart';
 import 'package:quick_bill/global_providers/invoice_provider.dart';
+import 'package:quick_bill/main.dart';
+import 'package:quick_bill/widgets/insights.dart';
 
 import 'package:quick_bill/widgets/new_invoice.dart';
 import 'package:quick_bill/widgets/recent_invoices.dart';
@@ -123,15 +125,18 @@ class DashboardScreen extends ConsumerWidget {
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) {
-                          return AlertDialog(
-                            title: Text('Feature coming soon...'),
-                          );
-                        },
+                      navigatorKey.currentState?.push(
+                        MaterialPageRoute(builder: (_) => Insights()),
                       );
-                    }, // TODO: Navigate to Insights
+                      // showDialog(
+                      //   context: context,
+                      //   builder: (_) {
+                      //     return AlertDialog(
+                      //       title: Text('Feature coming soon...'),
+                      //     );
+                      //   },
+                      // );
+                    },
                     icon: const Icon(Icons.insights),
                     label: const Text('Insights'),
                     style: ElevatedButton.styleFrom(
