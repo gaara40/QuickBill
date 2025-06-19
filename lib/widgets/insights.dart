@@ -75,6 +75,10 @@ class Insights extends ConsumerWidget {
                                         : Text(entry.key),
                                 trailing: Text(
                                   '₹${entry.value.toStringAsFixed(2)}',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               );
                             }).toList(),
@@ -118,8 +122,20 @@ class Insights extends ConsumerWidget {
                           return ListTile(
                             dense: true,
                             contentPadding: EdgeInsets.zero,
-                            title: Text(item.key),
-                            trailing: Text('${item.value} pcs'),
+                            title: Text(
+                              item.key,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            trailing: Text(
+                              '${item.value} pcs',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           );
                         },
                       ),

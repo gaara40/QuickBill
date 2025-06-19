@@ -28,8 +28,8 @@ class RecentInvoices extends ConsumerWidget {
             decoration: BoxDecoration(
               color: theme.colorScheme.primaryContainer.withValues(alpha: 0.2),
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
+                bottomLeft: Radius.circular(22),
+                bottomRight: Radius.circular(22),
               ),
             ),
             child: Row(

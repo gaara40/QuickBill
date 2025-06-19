@@ -67,7 +67,7 @@ class DashboardScreen extends ConsumerWidget {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: theme.colorScheme.primaryContainer.withValues(
-                  alpha: 0.1,
+                  alpha: 0.25,
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
@@ -83,18 +83,17 @@ class DashboardScreen extends ConsumerWidget {
                       Text(
                         'Total Sales',
                         style: theme.textTheme.headlineSmall?.copyWith(
-                          fontSize: 22,
+                          fontSize: 20,
                           fontWeight: FontWeight.w500,
-                          color: Color.fromRGBO(0, 0, 0, 0.8),
                         ),
                       ),
+                      const SizedBox(height: 2),
 
                       Text(
                         '₹ ${totalSales.toStringAsFixed(2)}',
                         style: theme.textTheme.headlineMedium?.copyWith(
-                          fontSize: 25,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(0, 0, 0, 0.8),
                         ),
                       ),
                     ],
@@ -115,7 +114,14 @@ class DashboardScreen extends ConsumerWidget {
                           MaterialPageRoute(builder: (_) => NewInvoice()),
                         ),
                     icon: const Icon(Icons.receipt_long),
-                    label: const Text('New Invoice'),
+                    label: const Text(
+                      'New Invoice',
+                      style: TextStyle(
+                        fontSize: 15,
+                        letterSpacing: 0.5,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 20),
                     ),
@@ -137,11 +143,21 @@ class DashboardScreen extends ConsumerWidget {
                       //   },
                       // );
                     },
-                    icon: const Icon(Icons.insights),
-                    label: const Text('Insights'),
+                    icon: Icon(
+                      Icons.insights,
+                      color: theme.colorScheme.primary,
+                    ),
+                    label: Text(
+                      'Insights',
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: theme.colorScheme.primary,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(vertical: 20),
-                      foregroundColor: theme.colorScheme.primary,
                     ),
                   ),
                 ),
