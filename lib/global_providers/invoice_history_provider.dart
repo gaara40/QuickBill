@@ -8,6 +8,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class InvoiceHistoryNotifier extends StateNotifier<List<GenerateInvoiceModel>> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // StreamSubscription _invoiceListener;
 
   InvoiceHistoryNotifier() : super([]) {
     loadInvoices();
@@ -22,6 +23,13 @@ class InvoiceHistoryNotifier extends StateNotifier<List<GenerateInvoiceModel>> {
           .doc(userId)
           .collection('invoices')
           .orderBy('dateTime', descending: true);
+
+      // _invoiceListener?.cancel(); //cancel any old listeners
+
+      // _invoiceListener = await invoiceCollection.snapshots().listen((snapshot){
+      //   state = snapshot.docs.map((doc){
+      //     return GenerateInvoiceModel.fromFirestore(doc));
+      // }).toList();
 
       final snapshot = await invoiceCollection.get();
       state =
@@ -49,9 +57,13 @@ class InvoiceHistoryNotifier extends StateNotifier<List<GenerateInvoiceModel>> {
       debugPrint("Error saving invoice to Firestore: $e");
     }
   }
-
-  // You can add other methods for deleting or updating invoices if necessary
-}
+  
+//   @override
+//   void dispose(){
+//     _invoiceListener?.cancel();
+//     super.dispose();
+//   }
+// }
 
 final invoiceHistoryProvider =
     StateNotifierProvider<InvoiceHistoryNotifier, List<GenerateInvoiceModel>>((
