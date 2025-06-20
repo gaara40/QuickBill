@@ -57,7 +57,8 @@ class InvoiceHistoryNotifier extends StateNotifier<List<GenerateInvoiceModel>> {
       debugPrint("Error saving invoice to Firestore: $e");
     }
   }
-  
+}
+
 //   @override
 //   void dispose(){
 //     _invoiceListener?.cancel();
