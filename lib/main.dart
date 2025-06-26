@@ -35,6 +35,7 @@ class MyApp extends ConsumerWidget {
       ),
     );
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
       theme: QuickBillTheme.lightTheme,
       darkTheme: QuickBillTheme.darkTheme,
