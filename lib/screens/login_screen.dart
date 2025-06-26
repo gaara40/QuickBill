@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quick_bill/firebase_authentication/auth_gate.dart';
 
 import 'package:quick_bill/global_providers/auth_providers.dart';
 import 'package:quick_bill/global_providers/inventory_provider.dart';
 import 'package:quick_bill/global_providers/invoice_history_provider.dart';
 import 'package:quick_bill/global_providers/invoice_provider.dart';
+import 'package:quick_bill/main.dart';
 
 import 'package:quick_bill/screens/signup_screen.dart';
 
@@ -43,6 +45,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ref.invalidate(invoiceHistoryProvider);
       ref.invalidate(inventoryProvider);
       ref.invalidate(totalSalesProvider);
+
+      Future.delayed(Duration(seconds: 2));
+
+      navigatorKey.currentState?.pushAndRemoveUntil(
+        MaterialPageRoute(builder: (ctx) => AuthGate()),
+        (route) => false,
+      );
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(

@@ -8,7 +8,6 @@
 - **Recent Invoices**: View a history of recent invoices and total sales.
 - **Theme Toggle**: Switch between light and dark themes for a better user experience.
 - **Profile & Shop Details**: Manage user profile and shop information from the settings screen.
-- **Offline Support**: Access inventory and generate invoices even when the internet is not available, with automatic sync once back online.
 
 ## Tech Stack:
 - **Flutter**: A powerful UI framework used for building natively compiled applications for mobile, web, and desktop.
