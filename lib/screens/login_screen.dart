@@ -6,6 +6,8 @@ import 'package:quick_bill/global_providers/auth_providers.dart';
 import 'package:quick_bill/global_providers/inventory_provider.dart';
 import 'package:quick_bill/global_providers/invoice_history_provider.dart';
 import 'package:quick_bill/global_providers/invoice_provider.dart';
+import 'package:quick_bill/main.dart';
+import 'package:quick_bill/screens/reset_password_screen.dart';
 import 'package:quick_bill/screens/signup_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -142,6 +144,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.email_outlined),
                         ),
+                        textCapitalization: TextCapitalization.none,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
@@ -223,7 +226,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        navigatorKey.currentState?.push(
+                          (MaterialPageRoute(
+                            builder: (_) => const ResetPasswordScreen(),
+                          )),
+                        );
+                      },
                       child: const Text('Forgot Password?'),
                     ),
                     TextButton(
