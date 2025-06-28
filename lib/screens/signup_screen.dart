@@ -17,6 +17,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _obscurePassword = true;
   bool _loading = false;
 
   @override
@@ -97,9 +98,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                           color: isDarkMode ? Colors.white70 : Colors.black87,
                           size: 40,
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ), // spacing between icon and text
+                        const SizedBox(width: 4),
                         Text(
                           'QuickBill',
                           style: theme.textTheme.headlineMedium?.copyWith(
@@ -159,8 +158,20 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                           labelText: 'Password',
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.lock_outline),
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                            icon: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                          ),
                         ),
-                        obscureText: true,
+                        obscureText: _obscurePassword,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
                             return 'Password is required.';
