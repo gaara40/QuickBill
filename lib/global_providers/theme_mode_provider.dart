@@ -16,7 +16,7 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
     if (saved == 'dark') {
       state = ThemeMode.dark;
     } else {
-      state = ThemeMode.light;
+      state = ThemeMode.system;
     }
   }
 
@@ -37,6 +37,29 @@ class ThemeModeNotifier extends StateNotifier<ThemeMode> {
             newTheme == ThemeMode.dark ? Brightness.light : Brightness.dark,
         statusBarIconBrightness:
             newTheme == ThemeMode.dark ? Brightness.light : Brightness.dark,
+      ),
+    );
+  }
+
+  void resetTheme() async {
+    state = ThemeMode.system;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_key);
+
+    final brightness =
+        WidgetsBinding.instance.platformDispatcher.platformBrightness;
+
+    final isDarkSystemTheme = brightness == Brightness.dark;
+
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: isDarkSystemTheme ? Colors.black : null,
+        systemNavigationBarIconBrightness:
+            isDarkSystemTheme ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness:
+            isDarkSystemTheme ? Brightness.light : Brightness.dark,
       ),
     );
   }

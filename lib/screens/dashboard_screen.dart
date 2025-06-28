@@ -4,6 +4,7 @@ import 'package:quick_bill/global_providers/auth_providers.dart';
 import 'package:quick_bill/global_providers/inventory_provider.dart';
 import 'package:quick_bill/global_providers/invoice_history_provider.dart';
 import 'package:quick_bill/global_providers/invoice_provider.dart';
+import 'package:quick_bill/global_providers/theme_mode_provider.dart';
 import 'package:quick_bill/main.dart';
 import 'package:quick_bill/widgets/insights.dart';
 
@@ -40,6 +41,7 @@ class DashboardScreen extends ConsumerWidget {
                         onPressed: () async {
                           Navigator.pop(ctx);
                           await ref.read(authServiceProvider).signOut();
+                          ref.read(themeModeProvider.notifier).resetTheme();
                           ref.invalidate(invoiceProvider);
                           ref.invalidate(invoiceHistoryProvider);
                           ref.invalidate(inventoryProvider);
