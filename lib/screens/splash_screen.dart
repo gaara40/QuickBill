@@ -9,11 +9,13 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Future.delayed(Duration(seconds: 2), () {
-      navigatorKey.currentState?.pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const AuthGate()),
-        (route) => false,
-      );
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(Duration(seconds: 2), () {
+        navigatorKey.currentState?.pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const AuthGate()),
+          (route) => false,
+        );
+      });
     });
     return Scaffold(
       backgroundColor: Colors.indigo,

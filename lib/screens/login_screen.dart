@@ -103,9 +103,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           color: isDarkMode ? Colors.white70 : Colors.black87,
                           size: 40,
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ), // spacing between icon and text
+                        const SizedBox(width: 4),
                         Text(
                           'QuickBill',
                           style: theme.textTheme.headlineMedium?.copyWith(
@@ -220,7 +218,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     ],
                   ),
                 ),
-
+                SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
