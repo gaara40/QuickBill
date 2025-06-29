@@ -22,6 +22,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   }
 
   Future<void> _handleReset() async {
+    FocusScope.of(context).unfocus();
+
     if (!_formKey.currentState!.validate()) return;
 
     if (mounted) {
@@ -139,6 +141,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           prefixIcon: Icon(Icons.email_outlined),
                         ),
                         textCapitalization: TextCapitalization.none,
+                        autocorrect: false,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.emailAddress,
 
                         validator: (value) {

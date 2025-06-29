@@ -32,6 +32,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> _handleLogin() async {
+    FocusScope.of(context).unfocus();
+
     if (!_formKey.currentState!.validate()) return;
 
     if (mounted) {
@@ -131,12 +133,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // Email
+                //Form
                 Form(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      //Email
                       TextFormField(
                         controller: _emailController,
                         decoration: const InputDecoration(
@@ -145,6 +148,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           prefixIcon: Icon(Icons.email_outlined),
                         ),
                         textCapitalization: TextCapitalization.none,
+                        autocorrect: false,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.emailAddress,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
@@ -225,6 +230,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    //Reset Button
                     TextButton(
                       onPressed: () {
                         navigatorKey.currentState?.push(
@@ -235,6 +241,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       },
                       child: const Text('Forgot Password?'),
                     ),
+
+                    //Create Account Button
                     TextButton(
                       onPressed: () {
                         Navigator.push(

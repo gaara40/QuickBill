@@ -28,6 +28,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   }
 
   Future<void> _handleSignUp() async {
+    FocusScope.of(context).unfocus();
     if (!_formKey.currentState!.validate()) return;
     if (mounted) {
       setState(() => _loading = true);
@@ -130,6 +131,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      //Email
                       TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
@@ -137,8 +139,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(Icons.email_outlined),
                         ),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         keyboardType: TextInputType.emailAddress,
-                        textCapitalization: TextCapitalization.none,
+                        autocorrect: false,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
                             return 'Email is required.';
@@ -153,6 +156,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
                       const SizedBox(height: 16),
 
+                      //Password
                       TextFormField(
                         controller: _passwordController,
                         decoration: InputDecoration(
@@ -172,6 +176,8 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
                             ),
                           ),
                         ),
+                        enableSuggestions: false,
+                        autocorrect: false,
                         obscureText: _obscurePassword,
                         validator: (value) {
                           if (value == null || value.trim().isEmpty) {
@@ -185,6 +191,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
                       const SizedBox(height: 16),
 
+                      //Button
                       ElevatedButton(
                         onPressed: _loading ? null : _handleSignUp,
                         style: ElevatedButton.styleFrom(
