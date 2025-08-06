@@ -16,7 +16,7 @@ View total sales, recent invoices, and performance stats in one glance.
 🌙 **Theme Toggle**:
 Switch between light and dark mode for a personalized experience.
 
-## 📱 **App Screens**
+## 📱 App Screens
 
 📊 **Dashboard Screen**:  
   View total sales, recent invoices, and key business stats.  
@@ -33,7 +33,7 @@ Switch between light and dark mode for a personalized experience.
 ⚙️ **Settings Screen**:  
   Toggle between light and dark themes for a customized experience.
 
-## 🛠️ **Tech Stack**
+## 🛠️ Tech Stack
 
 **Flutter**: A powerful UI framework used for building natively compiled applications for mobile, web, and desktop.
 
@@ -41,34 +41,48 @@ Switch between light and dark mode for a personalized experience.
 
 **Firebase**: A cloud platform used for authentication, Firestore (cloud database), and cloud storage.
 
-## 🚀 **Getting Started**:
+## 🚀 Getting Started:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/quickbill.git
+**1. Clone the Repository**
 
+git clone https://github.com/gaara40/QuickBill.git
 
-2. **Install Dependencies**:
-    Ensure you have Flutter installed on your system.
-    Navigate to the project folder and run:
-    flutter pub get
+**2. Install Dependencies**
 
-3. **Setup Firebase**:
-    Follow the Firebase setup guide to integrate Firebase into your Flutter app.
-    Configure Firebase for both Android and iOS.
-    Enable Firebase Firestore and Authentication (Google sign-in) in the Firebase console.
-    Run the App:
-    flutter run
+Make sure Flutter is installed on your system, then run:
 
-4. **App Screens**:
-    -Dashboard Screen: Displays total sales, recent invoices, and other key statistics.
-    -Inventory Screen: Manage inventory items, update stock levels, and add new items.
-    -Generate Invoice Screen: Select items, input customer details, and generate an invoice.
-    -Settings Screen: Adjust settings such as theme preference, shop details, and user profile.
+flutter pub get
 
-5. **Contributing**:
-    I welcome contributions! Feel free to open issues or submit pull requests. Please ensure that your code adheres to the existing coding style.
-    To get started with contributing:
-    -Fork the repository and create a new branch for your changes.
-    -Make your changes and run tests.
-    -Submit a pull request, describing the changes you’ve made.
+**3. Firebase Setup**
+
+Integrate Firebase into your Flutter app:
+
+-Follow the official Firebase Flutter Setup Guide.
+
+-Configure both Android and iOS platforms.
+
+-Enable Authentication for email and password and Cloud Firestore in your Firebase Console.
+
+-Download the google-services.json (for Android) and/or GoogleService-Info.plist (for iOS) and place them in the respective platform directories.
+
+**4. Run the App**
+
+flutter run
+
+## 🤝 Contributing
+Contributions are welcome! To contribute:
+
+-Fork the repository
+
+-Create a new branch for your feature or bugfix
+
+-Commit your changes with descriptive messages
+
+-Run and test your changes locally
+
+-Open a pull request, explaining your changes
+
+**Please follow the existing coding style and project structure.**
+
+## 🔐 Firebase Auth Note
+Each contributor's data will be saved under their Firebase credentials. Users are authenticated individually via Firebase Auth, ensuring isolated and secure access to their inventory and invoice data.
