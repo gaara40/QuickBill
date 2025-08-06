@@ -67,7 +67,7 @@ Integrate Firebase into your Flutter app:
 
 **4. Run the App**
 
-flutter run
+-> flutter run
 
 ## 🤝 Contributing
 Contributions are welcome! To contribute:
