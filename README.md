@@ -4,16 +4,16 @@ QuickBill is an intuitive and lightweight invoicing and inventory management sol
 
 ## ✨ **Features**
 
--🧾 **Invoice Generation**:
+🧾 **Invoice Generation**:
 Generate invoices with customer details, itemized pricing, taxes, and auto-calculated totals.
 
--📦 **Inventory Management**:
+📦 **Inventory Management**:
 Add, edit, delete, and monitor stock items with real-time updates.
 
--📊 **Sales Dashboard**:
+📊 **Sales Dashboard**:
 View total sales, recent invoices, and performance stats in one glance.
 
--🌙 **Theme Toggle**:
+🌙 **Theme Toggle**:
 Switch between light and dark mode for a personalized experience.
 
 ## 📱 **App Screens**
