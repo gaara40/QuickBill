@@ -36,7 +36,9 @@ Switch between light and dark mode for a personalized experience.
 ## 🛠️ **Tech Stack**
 
 **Flutter**: A powerful UI framework used for building natively compiled applications for mobile, web, and desktop.
+
 **Riverpod**: A state management solution for handling app-wide state, including inventory and invoices.
+
 **Firebase**: A cloud platform used for authentication, Firestore (cloud database), and cloud storage.
 
 ## 🚀 **Getting Started**:
