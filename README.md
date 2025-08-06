@@ -73,13 +73,9 @@ flutter run
 Contributions are welcome! To contribute:
 
 -Fork the repository
-
 -Create a new branch for your feature or bugfix
-
 -Commit your changes with descriptive messages
-
 -Run and test your changes locally
-
 -Open a pull request, explaining your changes
 
 **Please follow the existing coding style and project structure.**
