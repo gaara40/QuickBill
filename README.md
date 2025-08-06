@@ -1,8 +1,8 @@
-## 📦 **QuickBill: Invoicing and Inventory Management App**
+# 📦 **QuickBill: Invoicing and Inventory Management App**
 
 QuickBill is an intuitive and lightweight invoicing and inventory management solution designed for small businesses. Whether you're a local shopkeeper or a service provider, QuickBill helps you manage stock, generate invoices, track sales, and maintain a full invoice history — all with real-time cloud sync via Firebase.
 
-# ✨ **Features**
+## ✨ **Features**
 
 🧾 **Invoice Generation**:
 Generate invoices with customer details, itemized pricing, taxes, and auto-calculated totals.
@@ -15,7 +15,7 @@ Switch between light and dark mode for a personalized experience.
 👤 **User & Shop Profile**:
 Manage your profile and shop information through the settings screen.
 
-# 📱 **App Screens**
+## 📱 **App Screens**
 
 **Dashboard Screen**:
 Summary of total sales, recent invoices, and business insights.
@@ -28,13 +28,13 @@ View recent invoices with timestamps and total amounts.
 **Settings Screen**:
 Toggle theme
 
-# 🛠️ **Tech Stack**
+## 🛠️ **Tech Stack**
 
 **Flutter**: A powerful UI framework used for building natively compiled applications for mobile, web, and desktop.
 **Riverpod**: A state management solution for handling app-wide state, including inventory and invoices.
 **Firebase**: A cloud platform used for authentication, Firestore (cloud database), and cloud storage.
 
-# 🚀 **Getting Started**:
+## 🚀 **Getting Started**:
 
 1. **Clone the repository**:
    ```bash
