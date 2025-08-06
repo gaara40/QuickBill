@@ -5,7 +5,7 @@
 ## ✨ **Features**
 
 🧾 **Invoice Generation**:
-Generate invoices with customer details, itemized pricing, taxes, and auto-calculated totals.
+  Generate invoices with customer details, itemized pricing, taxes, and auto-calculated totals.
 
 📦 **Inventory Management**:
 Add, edit, delete, and monitor stock items with real-time updates.
